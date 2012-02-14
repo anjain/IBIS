@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
   def index
   end
-
+  # Edit Category page
   def edit
     @category = Category.find(params[:id])
   end
-
+  # Update Category attributes
   def update
     @product = Product.find(params[:id])
     respond_to do |format|
@@ -20,14 +20,13 @@ class CategoriesController < ApplicationController
       end
     end
   end
-
+  # Delete a category
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
 
     respond_to do |format|
       format.html { redirect_to "/" }
-      # format.json { head :no_content }
     end
   end
 end

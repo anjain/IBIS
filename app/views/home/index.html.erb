@@ -1,169 +1,107 @@
+<!--nav starts-->
+<nav class="main">
+
+  <a href="#">Home</a>
+  <a href="#">Calendar</a>
+  <a href="#" class="selected">Products</a>
+  <a href="#">Reservations</a>
+  <a href="#">Client</a>
+  <a href="#">To Do</a>
+  <a href="#">Invoice</a>
 
 
-      <!--<p> <%#= link_to 'Show product', product_path %>  </p>-->
-  <!--<%#= form_for( @category, :url => {:controller=>"admins", :action => "create" } ,:method=>"get") do |f| %>-->
-    <!--<%# @category.each do |f| %>-->
-    <!--<div  style="margin-bottom: 35px">-->
-     <!--<%#= image_tag "barcode.png"  %>-->
-      <!--<%#= image_tag "rails.png"  %>-->
-     <%#= label_tag :select_category %><br />
-     <!--<%#= f.select("create", "admin",  {:include_blank => true} )%>-->
-     <!--<%#= f.select(:parent_id, Category.find(:all).collect{|c| [c.category_name, c.id]},:include_blank => "Select category") %>-->
-   <!--</div>-->
-    <!--<%# end %>-->
-    <!--<div style="margin-left: 35px">-->
-<!--<table cellspacing="15px">-->
-  <!--<tr>-->
-    <!--<th>Product #</th>-->
-    <!--<th>Product Name</th>-->
-    <!--<th>Category</th>-->
-    <!--<th>Location</th>-->
-    <!--<th>Service</th>-->
-    <!--<th>Price</th>-->
-    <!--<th>Available </th>-->
-     <!--<th></th>-->
-     <!--<th></th>-->
-     <!--<th></th>-->
-  <!--</tr>-->
+</nav>
+
+<!--nav closed-->
+
+<section class="new_reserve">
+  <!--<p><%#= link_to 'Add product', new_product_path %></p>-->
+
+  <p id="add_product">Add Product</p>
+
+  <div id="search-results">
+    <%= render "products/popup_add_product" %>
+  </div>
+</section>
+
+<!--middle area open-->
+<section class="middleArea">
+
+  <div class="clender_con">
+    <span class="outgo">Products</span>
+
+    <div class="search"><input type="text" class="inputSty"/></div>
+    <div class="scan">Scan</div>
+  </div>
+
+  <div class="box1">
+    <div class="Result">
+      <p>Narrow Results</p>
+      <ul class="cat">
+        <li class="li_sty">Category</li>
+        <li>Category Name (#items)</li>
+        <li>Lenses (49)</li>
+        <li>Lights (25)</li>
+
+      </ul>
+      <ul class="cat vMid">
+        <li class="li_sty">Location</li>
+        <li><input type="checkbox" class="check"/>Location A</li>
+        <li><input type="checkbox" class="check"/>Location B</li>
+      </ul>
+      <ul class="cat vMid">
+        <li class="li_sty">In Store</li>
+        <li><input type="checkbox" class="check"/>In Store Now</li>
+
+      </ul>
+      <ul class="cat vMid">
+        <li class="li_sty">Start End Availability</li>
+        <li>Start Date:__________<a href="#"></a></li>
+        <li>End Date:___________<a href="#"></a></li>
+      </ul>
+      <ul class="cat vMid">
+        <li class="li_sty">Service</li>
+        <li><input type="checkbox" class="check"/>In Service</li>
+        <li><input type="checkbox" class="check"/>Out of Service</li>
+
+      </ul>
+    </div>
+
+    <div class="scrollbar simple  scroll_sty hgt400px">
+      <div class="client wid739 mr0"><br/><br/>
+
+        <div class="head_row">
+          <span class="wid98">Product #<a href="#" class="down_arrow"></a></span>
+          <span class="wid142 mr25">Product Name<a href="#" class="down_arrow"></a></span>
+          <span class="wid95">Category<a href="#" class="down_arrow"></a></span>
+          <span class="wid95">Location<a href="#" class="down_arrow"></a></span>
+          <span class="wid89">Service<a href="#" class="down_arrow"></a></span>
+          <span class="wid82">Price<a href="#" class="down_arrow"></a></span>
+          <span class="wid95 clr_mr">Available<a href="#" class="down_arrow"></a></span>
 
 
+        </div>
+        <% @product.each do |product| %>
+            <% if product.service=="in service" %>
+                <% @service ="Working" %>
+            <% else %>
+                <% @service="Out of Service" %>
+            <% end %>
 
-       <!--nav starts-->
-       <nav class="main">
-
-          <a href="#">Home</a>
-          <a href="#">Calendar</a>
-          <a href="#"  class="selected">Products</a>
-          <a href="#">Reservations</a>
-          <a href="#">Client</a>
-          <a href="#">To Do</a>
-          <a href="#">Invoice</a>
-
-
-
-       </nav>
-
-        <!--nav closed-->
-
-        <section class="new_reserve">
-          <!--<p><%#= link_to 'Add product', new_product_path %></p>-->
-
-      <p id="add_product">Add Product</p>
-      <div id="search-results">
-        <%= render "products/popup_add_product" %>
+            <div class="row1 wid733">
+              <span class="wid87 align_text ml"><%= link_to product.id, unique_product_path(product.id) %></span>
+              <span class="wid161 align_text"><%= link_to product.product_name, unique_product_path(product.id) %></span>
+              <span class="wid85"><%= product.category %></span>
+              <span class="wid94">Location A</span>
+              <span class="wid91"><b class="button bg41c24a"><%= @service %></b></span>
+              <span class="wid82 align_right">$<%= product.price %></span>
+              <span class="wid85 clr_mr"><b class="button bg41c24a"><%= product.available %></b></span>
+            </div>
+        <% end %>
       </div>
-        </section>
-
-        <!--middle area open-->
-            <section class="middleArea">
-
-                 <div class="clender_con">
-                   <span class="outgo">Products</span>
-                   <div class="search"><input type="text"  class="inputSty"/></div>
-                   <div class="scan">Scan</div>
-                 </div>
-
-				<div class="box1">
-                    <div class="Result">
-                       <p>Narrow Results</p>
-                       <ul class="cat">
-                           <li class="li_sty">Category</li>
-                           <li>Category Name (#items)</li>
-                           <li>Lenses (49)</li>
-                           <li>Lights (25)</li>
-
-                       </ul>
-                       <ul class="cat vMid">
-                           <li class="li_sty">Location</li>
-                           <li><input type="checkbox"  class="check" />Location A</li>
-                           <li><input type="checkbox" class="check"  />Location B</li>
-                       </ul>
-                       <ul class="cat vMid">
-                           <li class="li_sty">In Store</li>
-                           <li><input type="checkbox"  class="check" />In Store Now</li>
-
-                       </ul>
-                       <ul class="cat vMid">
-                           <li class="li_sty">Start End Availability</li>
-                           <li>Start Date:__________<a href="#"></a></li>
-                           <li>End Date:___________<a href="#"></a></li>
-                       </ul>
-                       <ul class="cat vMid">
-                           <li class="li_sty">Service</li>
-                           <li><input type="checkbox"  class="check" />In Service</li>
-                           <li><input type="checkbox"  class="check" />Out of Service</li>
-
-                       </ul>
-                    </div>
-
-                <div class="scrollbar simple  scroll_sty hgt400px">
-					    <div class="client wid739 mr0"><br /><br />
-							 <div class="head_row">
-								  <span class="wid98">Product #<a href="#" class="down_arrow"></a></span>
-								  <span class="wid142 mr25">Product Name<a href="#" class="down_arrow"></a></span>
-								  <span class="wid95">Category<a href="#" class="down_arrow"></a></span>
-								  <span class="wid95">Location<a href="#" class="down_arrow"></a></span>
-                                  <span class="wid89">Service<a href="#" class="down_arrow"></a></span>
-								  <span class="wid82">Price<a href="#" class="down_arrow"></a></span>
-                                  <span class="wid95 clr_mr">Available<a href="#" class="down_arrow"></a></span>
+    </div>
+  </div>
+</section>
 
 
-							   </div>
-                          <% @product.each do |product| %>
-                                <% if product.service=="in service" %>
-                                    <% @service ="Working" %>
-                                    <% else %>
-                                    <% @service="Out of Service" %>
-                                    <% end %>
-
-							   <div class="row1 wid733">
-								  <span class="wid87 align_text ml"><%= link_to product.id ,unique_product_path( product.id )%></span>
-								  <span class="wid161 align_text"><%= link_to product.product_name ,unique_product_path( product.id )%></span>
-								  <span class="wid85"><%= product.category %></span>
-								  <span class="wid94">Location A</span>
-								  <span class="wid91"><b class="button bg41c24a"><%=@service%></b></span>
-                                  <span class="wid82 align_right">$<%=product.price %></span>
-                                  <span class="wid85 clr_mr"><b class="button bg41c24a"><%= product.available %></b></span>
-							   </div>
-                               <% end %>
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-                               <!--<div class="row1 wid733"></div>-->
-
-							   </div>
-
-
-
-
-
-							   </div>
-
-
-
-
-
-
-
-			    </div>
-
-
-
-
-
-
-
-
-
-
-            </section>
-
-
-        <!--middle area closed-->
+<!--middle area closed-->

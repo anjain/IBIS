@@ -69,19 +69,13 @@ $(document).ready ->
    jQuery ->
     select_cgy = $("#category_subcategory")
     select_cgy.live 'change', (e)  =>
-#     selection_cgy = select_cgy.val()
      selection_cgy = $('#category_subcategory :selected').text();
-    # alert selection_cgy
      $.ajax
          url:"/products/show_sub_category?cat_value=" + selection_cgy
          type: 'POST'
-         #data: podaci
          datatype: 'text'
          cache:false
          success: (data) ->
-              # alert "success"
-              # alert data
-
 
 
     select = $("#product_category")
@@ -99,16 +93,12 @@ $(document).ready ->
     select = $("#product_category")
     select.live 'change', (e) ->
       selection = select.val()
-  #    alert selection
       $.ajax
          url:"/products/show_category?cat_value=" + selection
          type: 'POST'
-         #data: podaci
          datatype: 'text'
          cache:false
          success: (data) ->
-
       e.preventDefault()
-              # alert "success"
-              # alert data
+
 

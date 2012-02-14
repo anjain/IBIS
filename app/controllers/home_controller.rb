@@ -6,50 +6,28 @@ class HomeController < ApplicationController
   require 'barby/barcode/code_128'
   require 'barby/barcode/code_39'
 
+  # Show Product page as Home page
   def index
     if user_signed_in?
       @user = User.find(:all)
       @product = Product.find(:all, :conditions=>["user_id=?", current_user.id], :order => "created_at asc")
       @category = Category.new
-       @product_add = Product.new
+      @product_add = Product.new
       @category_add= Category.find :all
-     @product_category = Category.find(:all,:conditions=>["category_name=?",params[:cat_value]])
-
-      # puts "strat ,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
-      #barcode = Barby::Code128B.new("1234534543")
-      #File.open("#{Rails.root}/app/assets/images/barcode.png", 'wb') { |f|
-      #  f.write barcode.to_png
-      #
-      #  #  puts "end,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
-      #}
-      #p barcode.to_png
-
-      #  include HasBarcode
-      #  has_barcode :barcode,
-      #    :outputter => :png,
-      #    :type => :code_39,
-      #    :value => Proc.new { |p| p.number }
-
-
-      #
-      #       barcode_value = "00000000000"
-      #full_path = "barcode#{barcode_value}.png"
-      #barcode = Barby::Code39.new(barcode_value)
-      #File.open(full_path, 'w') { |f| f.write barcode.to_png(:margin => 3, :xdim => 2,     :height => 55) }
-      #render :text => "#{barcode_value}.png has been generated."
+      @product_category = Category.find(:all, :conditions=>["category_name=?", params[:cat_value]])
     elsif !user_signed_in?
     end
-     respond_to do |format|
-        format.html
-        format.js {render :json =>@product_category }
-      end
+    respond_to do |format|
+      format.html
+      format.js { render :json =>@product_category }
+    end
   end
 
-
+ # Page to add new user
   def new
     @user = User.new
   end
-
+ # Create a new user
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -59,11 +37,11 @@ class HomeController < ApplicationController
       render :action => 'new'
     end
   end
-
+ # Edit user
   def edit
     @user = User.find(params[:id])
   end
-
+ # Update user
   def update
     @user = User.find(params[:id])
     @temp=params[:user]
@@ -79,7 +57,7 @@ class HomeController < ApplicationController
       flash[:notice]="Invalid username or email or role id"
     end
   end
-
+ #Delete user
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
