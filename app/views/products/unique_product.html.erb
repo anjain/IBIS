@@ -1,0 +1,120 @@
+<%= form_for(@product) do |f| %>
+    <% if @product.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <!--nav starts-->
+    <nav class="main">
+      <a href="/">Home</a>
+      <a href="#">Calendar</a>
+      <a href="#" class="selected">Products</a>
+      <a href="#">Reservations</a>
+      <a href="#">Client</a>
+      <a href="#">To Do</a>
+      <a href="#">Invoice</a>
+    </nav>
+
+    <!--nav closed-->
+    <section class="new_reserve">
+      <p id="add_product">Add Product</p>
+      <div id="search-results">
+        <%= render "popup_add_product" %>
+      </div>
+    </section>
+    <!--middle area open-->
+    <section class="middleArea">
+      <div class="clender_con">
+        <span class="outgo"><%= @product.product_name %></span>
+        <nav>
+          <a href="#"><%= @product.product_name %></a>
+
+          <a href="#"><%= @product.category %></a>
+          <% cgy= find_category_by_name(@product.category)%>
+          <% cgy.each do |c|  %>
+          <% sub_cgy= find_sub_category_by_id(c.parent_id)%>
+              <%sub_cgy.each do |s| %>
+             <a href="#"> <%=s.category_name   %></a>
+                   <% sub_cgy= find_sub_category_by_id(s.parent_id)%>
+              <%sub_cgy.each do |s_cgy| %>
+             <a href="#"> <%=s_cgy.category_name   %> </a>
+              <% end %>
+              <% end %>
+              <% end %>
+
+        </nav>
+        <div class="icon_right">
+          <a href="#"><%= image_tag "#{@product.product_name}_#{@product.id}.png", :height => 40, :width=>80 %>
+            <!--<img src="icon_rs.png" alt="#">-->
+          </a>
+        </div>
+      </div>
+      <div class="box1">
+        <section class="info_box">
+          <div class="leftSide">
+            <p>Description: <%= @product.description %> <br/>
+              Manufacturer: <%= @product.manufacturer %><br/>
+              Model: <%= @product.model %> <br/>
+              Quantity: <%= @product.quantity %><br/>
+                           <span class="notes">
+                             Notes
+                             <%= f.text_area :notes, :class=>"note_insty" %>
+                             <!--<input type="text" class="note_insty" >-->
+                           </span>
+          </div>
+          <div class="rightSide">
+            <!--<img src="/assets/machine.png" alt="#">-->
+            <%= image_tag @product.photo.url, :height=>195, :width=>285 %>
+            <%#= image_tag "machine.gif",:alt=>"#"  %>
+          </div>
+        </section>
+        <section class="reserve">
+          <span>Reserve</span>
+          <span class="wid329">Availability</span>
+          <span>Service<b class="button bg375db3 service">Service</b></span>
+        </section>
+        <section class="planed">
+          <article>Planned Rentals</article>
+          <article class="wid249">Current Rentals</article>
+          <article class="wid233">Historic Rentals</article>
+          <article class="wid130 norm">Total Rentals: #</article>
+
+        </section>
+
+
+        <div class="view">
+          <a href="#">Edit Product</a>
+          <a href="#" class="certify">View on Calendar</a>
+        </div>
+      </div>
+    </section>
+    <!--middle area closed-->
+<% end %>
+<!--<script type="text/javascript">-->
+<!--//    $(document).ready(function() {-->
+<!--//        $("#add_product").live("click", function(e) {-->
+<!--//            $("#popup_add_product").show();-->
+<!--//            e.preventDefault();-->
+<!--//        });-->
+<!--//        $("#popup_closed").live("click", function(e) {-->
+<!--//            $("#popup_add_product").hide();-->
+<!--//            e.preventDefault();-->
+<!--//        });-->
+<!--//         $("#popup_close").live("click", function(e) {-->
+<!--//            $("#popup_add_product").hide();-->
+<!--//            e.preventDefault();-->
+<!--//        });-->
+<!--//-->
+<!--//    });-->
+<!--</script>-->
+
+
+
+<%# end %>

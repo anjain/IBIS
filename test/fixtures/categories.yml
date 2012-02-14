@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  category_name: MyString
+  perent_id: 1
+  product: 
+
+two:
+  category_name: MyString
+  perent_id: 1
+  product: 

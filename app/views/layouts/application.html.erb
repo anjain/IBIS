@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IBIS</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag   "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css"%>
+  <%= stylesheet_link_tag   "style"%>
+  <%= stylesheet_link_tag   "scrollbar"%>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery-ui" %>
+  <%= javascript_include_tag "html5" %>
+  <%= javascript_include_tag "scroller/jquery-latest.min.js" %>
+  <%= javascript_include_tag "scroller/jquery.scroll.min.js" %>
+
+  <%= csrf_meta_tags %>
+  <p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+  <!--[if IE 7]>
+<link href="css/ie7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+    $('.scrollbar').scrollbar();
+   });
+    </script>
+<body>
+      <!--<div id="user_nav">-->
+      <!--<%# if user_signed_in? %>-->
+        <!--Signed in as-->
+         <%#= current_user.email %>
+        <!--<%#= link_to "Sign out", destroy_user_session_path,:method=>'delete' %>-->
+      <!--<%# else %>-->
+        <%#= link_to "Sign up", new_user_registration_path %>
+        <!--<%#= link_to "Sign in", new_user_session_path %>-->
+      <!--<%# end %>-->
+    <!--</div>-->
+      <div class="wrapper">
+     <header>
+         <h1> <%=link_to "#",:class=>"logo" do %><span>IBIS</span><% end %></h1>
+           <div class="userInfo">
+              <nav>
+                 <%= link_to "Home","#" %>
+                 <%= link_to "My Account","#" %>
+                 <% if user_signed_in? %>
+                 <%= link_to "Sign out", destroy_user_session_path,:method=>'delete',:class=>"clr_mr" %>
+                   <% else %>
+                   <%= link_to "Sign up", new_user_registration_path,:class=>"clr_mr"  %> or
+                       <%= link_to "Sign in", new_user_session_path,:class=>"clr_mr"  %>
+                    <% end %>
+              </nav>
+              <p>Hello &lt;<span><%= current_user.email %></span>&gt; - &lt;<span>Location A</span>&gt;</p>
+              <h4>0 items - <i>$0.00</i></h4>
+
+              <a href="#" class=" btn_newRes">New Reservation</a>
+           </div>
+
+       </header>
+<%= yield %>
+          <footer>
+
+           <a href="#">Reports</a> |
+           <a href="#">Company Setup</a> |
+           <a href="#">About Us</a><br /> <br />
+           © IBIS RSG LLC 2012
+
+
+        </footer>
+     </div>
+</body>
+</html>

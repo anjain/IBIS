@@ -1,0 +1,13 @@
+<h1> List Categories</h1>
+<table>
+<% @category.each do |category| %>
+  <tr>
+
+    <td><%= category.category_name %></td>
+    <td><%= link_to 'Edit', edit_category_path(category.id) %> </td>
+    <td><%= link_to 'Delete', destroy_category_path(category.id) %> </td>
+  </tr>
+<% end %>
+</table>
+
+  <%= link_to "Back","/admins/category_management"  %>

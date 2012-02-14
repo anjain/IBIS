@@ -1,0 +1,73 @@
+<div id="popup_add_product" style="visibility:hidden">
+
+ <%= form_for(@product_add, :html => { :multipart => true } ) do |p| %>
+    <% if @product_add.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@product_add.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @product_add.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+<div class="popup" >
+  <p class="popup_p">Add Product<a href="#" id="popup_close"><img src="/assets/pop_close.png" alt="#"></a></p>
+
+  <div class="scrollbar simple scrollstylRowPop hgt600px" id="scrollbar">
+    <div class="product_scroll">
+      <b>Product Info</b>
+      <span> <%= p.text_field :product_name ,:placeholder=>"Product Name"%></span>
+      <span> <%= p.text_field :description ,:placeholder=>"Description"%></span>
+      <span><%= p.text_field :manufacturer,:placeholder=>"Manufacturer"%></span>
+      <span> <%= p.text_field :model,:placeholder=>"Model" %></span>
+      <span> <%= p.select(:category, Category.find(:all, :conditions=>["parent_id is NULL"]).collect { |c| [c.category_name, c.category_name] }, option={:id=>"add_category_new", :include_blank => "Select category"},html_option={:style=>"color: #686868;"}) %>
+              </span>
+      <span id="show_subcategory"><a class="down_arrow" href="#"></a></span>
+      <span id="show_subcategory_category"><a class="down_arrow" href="#"></a></span>
+      <span><%= p.text_field :quantity,:placeholder=>"Quantity"%></span>
+      <b> <%= p.label :Pricing %></b>
+      <span><%=p.text_field :daily_rate,:placeholder=>"Daily Rate" %></span>
+      <span> <%= p.text_field :weekly_rate,:placeholder=>"Weekly Rate" %></span>
+      <span>  <%= p.text_field :weekend_rate,:placeholder=>"Weekend Rate" %></span>
+      <span>   <%=p.text_field :late_fee,:placeholder=>"Late Fee" %></span>
+      <b>Purchase Info</b>
+        <span class="purchase"><a class="pur_btn">Purchase Date</a><i>M
+           <%= text_field_tag "M" ,"",:class=>"wid34"%> D  <%= text_field_tag "D" ,"",:class=>"wid34"%>Y  <%= text_field_tag "Y" ,"", :class=>"wid49 clr_mr"%>
+          <input type="text" class="wid49 clr_mr"></i></span>
+      <span><%= p.text_field :purchased_from,:placeholder=>"Purchased From" %></span>
+      <span> <%= p.text_field :purchased_price,:placeholder=>"Purchased Price",:id=>"product_price" %></span>
+      <span><%= p.text_field :replacement_price,:placeholder=>"Replacement Price" %></span>
+      <b> <%= p.label :Specification%></b>
+      <span> <%= p.text_field :weight,:placeholder=>"Weight" %></span>
+      <span> <%= p.select(:linear_unit, [["inches", "inches"], ["millimeter", "millimeter"], ["centimeter", "centimeter"], ["meter", "meter"]], option={ :include_blank => "Linear Unit"},html_option={:style=>"color: #686868;width: 210px;"}) %><a class="down_arrow" href="#"></a></span>
+      <span>  <%= p.text_field :length,:placeholder=>"Length" %></span>
+      <span>  <%= p.text_field :width,:placeholder=>"Width" %></span>
+      <span> <%= p.text_field :height,:placeholder=>"Height" %></span>
+
+      <span class="purchase"><button type="button" class="pur_btn">Expendable</button><i> <%= p.check_box :expendable, {:class=>"chckSty"}, "true", "false"  %> <%= p.text_field :expendable_price,:class=>"wid82 clr_mr"%></i></span>
+
+                                       <span class="notes1">
+                                            Notes:
+                                             <%= p.text_area :notes, :class=>"note1_insty"%>
+                                            <!--<input type="text" class="note1_insty">-->
+                                      </span>
+
+
+    </div>
+  </div>
+  <div class="view mr32">
+   <%= link_to "Cancel","/",:id=>"popup_closed"  %>
+      <%= p.submit("Submit", option={:id=>"submit_product",:class=>"certify"}) %>
+    <!--<a href="#" class="certify">Save Product</a>-->
+  </div>
+</div>
+      <% end %>
+</div>
+
+
+
+<!--<script type="text/javascript" src="js/scroller/jquery-latest.min.js"></script>-->
+<!--<script type="text/javascript" src="js/scroller/jquery.scroll.min.js"></script>-->

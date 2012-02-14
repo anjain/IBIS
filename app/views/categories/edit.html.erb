@@ -1,0 +1,28 @@
+  <%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@category.errors.count, "error") %> prohibited
+        this post from being saved:</h2>
+    <ul>
+    <% @category.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div >
+    <%= f.label :category_name %><br />
+    <%= f.text_field :category_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+     <div class="actions">
+
+  </div>
+<% end %>
+  <%= link_to "Back","/admins/edit"  %>
+  <%= link_to "Delete",destroy_category_path(@category.id),:confirm => 'Are you sure?' %>
+<%# end %>

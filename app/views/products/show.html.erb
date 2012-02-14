@@ -1,0 +1,32 @@
+<p id="notice"><%#= notice %></p>
+
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Category</th>
+    <th>Location</th>
+    <th>Price</th>
+    <th>Available </th>
+    <th>Created at </th>
+     <th></th>
+     <th></th>
+     <th></th>
+  </tr>
+
+<% @product.each do |product| %>
+  <tr>
+    <td><%=product.product_name %></td>
+    <td><%= product.category %></td>
+    <td><%= product.location %></td>
+    <td><%=product.price %></td>
+    <td><%= product.available %></td>
+    <td><%= product.created_at.strftime("%B %d,%Y")%></td>
+    <td><%#= link_to 'Edit', edit_product_path %> </td>
+
+  </tr>
+<% end %>
+</table>
+
+
+<%#= link_to 'Edit', edit_product_path(@product) %>
+<%= link_to 'Back', "/" %>

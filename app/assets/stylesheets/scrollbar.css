@@ -1,0 +1,185 @@
+
+/* ---------- basic theme: these are the most necessary styles --------------------------------- */
+#demo2{float:left;}
+.scrollbar-pane {
+    margin-right: 20px;
+}
+
+.scrollbar-handle-container {
+    background: #ffffff !important;
+    width: 23px !important; right:4px !important; height:251px !important; border:#e1e1e1 1px solid !important;
+}
+
+.scrollbar-handle {
+    width: 18px !important;
+    background: #ffffff !important; border:#c1c1c1 1px solid; border-radius:5px; background:url(scroll.png) no-repeat 1px  center !important; z-index:999!important; right:1.5px !important;
+}
+.scrollbar-handle:hover {
+    background: #666;
+}
+
+.scrollbar-handle.move {
+    background: #111;
+}
+
+.scrollbar-handle-up {
+    width: 25px !important;
+    height: 16px !important; background:url(scroll_up.png) no-repeat !important; right:4px !important; top:3px !important; border:none !important;
+}
+
+.scrollbar-handle-up:hover {
+    background: #666;
+}
+
+.scrollbar-handle-down {
+    width: 25px !important;
+    height: 16px !important; background:url(scroll_down.png) no-repeat !important; border:none !important; bottom:3px !important;right:4px !important;
+}
+
+.scrollbar-handle-down:hover {
+    background: #666;
+}
+
+
+
+/* ---------- simple theme --------------------------------------------------------------------- */
+
+.simple .scrollbar-pane {
+    margin-right: 16px;
+}
+
+
+.simple .scrollbar-handle-container {
+    background: #EEE;
+    width: 15px;
+}
+
+.simple .scrollbar-handle-container.hover,
+.simple .scrollbar-handle-container.move {
+    background: #E6E6E6;
+}
+
+.simple .scrollbar-handle, 
+.simple .scrollbar-handle-up, 
+.simple .scrollbar-handle-down {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAHCAYAAACcLcTKAAAAMklEQVR42mP4TwRgIBJQwwyGQWkZrR0+GDxPUO9gC2Gi3UNpqFArpIdFUh3UGZqY0gwAQe422HjkstgAAAAASUVORK5CYII=);
+	background-repeat: no-repeat;
+}
+
+
+/* handle */
+.simple .scrollbar-handle {
+    width: 13px;
+    border: 1px solid #CCC;
+	background-color: #CCC;
+	background-position: -16px 50%;
+}
+
+.simple .scrollbar-handle:hover {
+    border: 1px solid #666;
+}
+
+.simple .scrollbar-handle.move {
+    border: 1px solid #666;
+    background-color: #999;
+}
+
+
+/* arrow up */
+.simple .scrollbar-handle-up {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #CCC;
+    background-color: #CCC;
+	background-position: -34px 2px;
+	margin-bottom: 1px;
+}
+
+.simple .scrollbar-handle-up.hover,
+.simple .scrollbar-handle-up:hover {
+    border: 1px solid #666;
+}
+
+.simple .scrollbar-handle-up.move {
+    background-color: #999;
+}
+
+
+/* arrow down */
+.simple .scrollbar-handle-down {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #CCC;
+    background-color: #CCC;
+	background-position: 2px 4px;
+	margin-top: 1px;
+}
+
+.simple .scrollbar-handle-down.hover,
+.simple .scrollbar-handle-down:hover {
+    border: 1px solid #666;
+}
+
+.simple .scrollbar-handle-down.move {
+    background-color: #999;
+}
+
+
+
+/* ---------- fff theme ----------------------------------------------------------------- */
+
+ul.fff {
+    padding: 0;
+}
+
+.fff .scrollbar-pane {
+    margin-right: 12px;
+}
+
+.fff .scrollbar-handle-container {
+    background: #EEE;
+    width: 12px;
+}
+
+.fff .scrollbar-handle {
+    width: 12px;
+	background-color: #CCC;
+}
+
+.fff .scrollbar-handle:hover {
+    background-color: #999;
+}
+
+.fff .scrollbar-handle.move {
+    background-color: #666;
+}
+
+.fff .scrollbar-handle-up {
+    width: 12px;
+    height: 18px;
+}
+
+.fff .scrollbar-handle-down {
+    width: 12px;
+    height: 18px;
+}
+
+.scrollbar{width:452px;height:276px;margin:47px 60px 5px 0;overflow:hidden;float:left;}
+.mr_no{ margin:0 !important;}
+ 
+div.hgt400px {height:376px !important;} /*--- (scrollbar > -24 of Total Height) ---*/
+div.hgt400px .scrollbar-handle-container {height:340px !important;} /*--- (-60 of Total Height) ---*/
+div.hgt400px .client{height:400px !important;}
+.scroll_sty{ margin:0 !important; float:right !important; margin-right:0 !important; width:774px !important;}
+.client{width:426px; height:300px; margin:5px 5px 5px 5px;}
+
+div.mr0 .simple .scrollbar-pane{ margin-right:0 !important;}
+.scrollstylRow{ width:924px !important; float:left !important; margin:0 !important;}
+.row_scroll{width:910px; height:300px; margin:5px 0 5px 8px;}
+div.hgt400px .row_scroll{height:400px !important;}
+div.hgt600px {height:642px !important;} /*--- (scrollbar > -24 of Total Height) ---*/
+div.hgt600px .scrollbar-handle-container{height:605px !important;} /*--- (-60 of Total Height) ---*/
+div.hgt600px .product_scroll{height:650px !important; }
+div.hgt600px .scrollbar-pane{margin-right:0 !important}
+.product_scroll{width:370px; height:650px; margin:5px 0 5px 0;}
+.scrollstylRowPop{width:385px !important; float:left !important; margin:0 !important;}

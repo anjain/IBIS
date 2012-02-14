@@ -1,0 +1,34 @@
+<h1>Listing Active Users</h1>
+<div align="center">
+
+<table border="1" cellpadding="20">
+  <tr>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Role</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= user.username %></td>
+    <% if user.role_id==1 %>
+<td>Administrator</td>
+<% els%>
+<td>User</td>
+
+        <% end %>
+  </tr>
+<% end %>
+</table>
+<br />
+  <table align="center" cellspacing="10">
+
+<td><%= link_to "Active User", users_activeuser_path %></td>
+
+
+      </table>
+
+
+
+                   </div>

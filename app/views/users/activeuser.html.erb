@@ -1,0 +1,24 @@
+<h1>Active User</h1>
+<div align="center">
+<%= form_for @user,:url => {:controller=>"users", :action=>"activeuser1"},:html => { :method => :get } do |f|%>
+          <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :email , 'Email Id of User'%>
+    <%= f.text_field :email %>
+  </div>
+      <br />
+  <div class="actions">
+    <%= f.submit 'Active User' %>
+  </div>
+    <% end %>
+    </div>

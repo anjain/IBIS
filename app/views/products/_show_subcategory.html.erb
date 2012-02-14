@@ -1,0 +1,11 @@
+<div></div>
+ <br>
+<div>
+  <% @product_category.each do |cgy| %>
+      <% @category_product= find_subcategory(cgy.id) %>
+  <% end %>
+    <%if !@category_product.empty? %>
+  <%= select_tag :category, options_from_collection_for_select(@category_product, "category_name", "category_name"), :prompt => "Select Subcategory", :id=>"category_subcategory" %>
+   <% end %>
+
+</div>

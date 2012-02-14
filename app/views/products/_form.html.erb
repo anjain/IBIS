@@ -1,0 +1,216 @@
+<div style="margin-left:20px">
+ <%= form_for(@product, :html => { :multipart => true } ) do |f| %>
+    <% if @product.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <!--<div>-->
+      <!--<%#= f.label :product_name %>-->
+      <!--<br/>-->
+      <!--<%#= f.text_field :product_name %>-->
+    <!--</div>-->
+    <!--<br/>-->
+    <!--<div>-->
+      <!--<%#@product_category.each do |cgy| %>-->
+          <!--<%#= cgy.category_name %>-->
+      <!--<%# end %>-->
+      <!--<%#= f.label :select_category %>-->
+      <!--<br/>-->
+
+    <!--</div>-->
+    <!--<br/>-->
+    <!--<div>-->
+      <!--<%#= f.label :location %>-->
+      <!--<br/>-->
+      <!--<%#= f.text_field :location %>-->
+    <!--</div>-->
+    <!--<br/>-->
+    <!--<div>-->
+      <!--<%#= f.label :service %>-->
+      <!--<br/>-->
+      <!--<%#= f.select(:service, [["in service", "in service"], ["out of service", "out of service"]], :include_blank => "Select service") %>-->
+
+    <!--</div>-->
+    <!--<br/>-->
+    <!--<div>-->
+      <!--<%#= f.label :price %>-->
+      <!--<br/>-->
+      <!--<%#= f.text_field :price %>-->
+    <!--</div>-->
+
+    <!--<br>-->
+    <!--<div>-->
+      <!--<%#= f.label :In_store %>-->
+      <!--<%#= f.check_box :available, {}, "Available", "Unavailable" %>-->
+    <!--</div>-->
+      <!--<br>-->
+
+
+
+      <div>
+        <%#= f.file_field :photo %>
+      </div>
+
+      <div>
+        <%= f.label :Product_Info %>
+      </div>
+      <br>
+      <div>
+       <%= f.text_field :product_name ,:placeholder=>"Product Name"%>
+      </div>
+      <br>
+      <div>
+         <%= f.text_field :description ,:placeholder=>"Description"%>
+      </div>
+      <br>
+       <div>
+         <%= f.text_field :manufacturer,:placeholder=>"Manufacturer"%>
+      </div>
+      <br>
+       <div>
+         <%= f.text_field :model,:placeholder=>"Model" %>
+      </div>
+      <br>
+      <div>
+        <%= f.select(:category, Category.find(:all, :conditions=>["parent_id is NULL"]).collect { |c| [c.category_name, c.category_name] }, option={:id=>"add_category_new", :include_blank => "Select category"},html_option={:style=>"color: #686868;width: 210px;"}) %>
+
+      <div id="show_subcategory"></div>
+
+      <div id="show_subcategory_category"></div>
+
+      </div>
+      <br>
+        <div>
+         <%= f.text_field :quantity,:placeholder=>"Quantity"%>
+      </div>
+      <br>
+      <div>
+        <%= f.label :Pricing %>
+      </div>
+      <br>
+      <div>
+         <%= f.text_field :daily_rate,:placeholder=>"Daily Rate" %>
+      </div>
+      <br>
+      <div>
+         <%= f.text_field :weekly_rate,:placeholder=>"Weekly Rate" %>
+      </div>
+      <br>
+      <div>
+         <%= f.text_field :weekend_rate,:placeholder=>"Weekend Rate" %>
+      </div>
+      <br>
+      <div>
+         <%= f.text_field :late_fee,:placeholder=>"Late Fee" %>
+      </div>
+      <br>
+        <div>
+        <%= f.label :Purchase_info%>
+      </div>
+      <br>
+      <div>
+         <%= f.label :Purchased_Date,:style=>"color: #686868;margin-right:25px" %>
+         <%#= f.text_field :Purchased,:value=>"Purchased Date" ,:size=>13,:style=>"color: #686868;", :readonly => true%>
+         <%= text_field_tag "M" ,"",:size=>1,:placeholder=>"M"%>
+         <%= text_field_tag "D","",:size=>1,:placeholder=>"D"%>
+         <%= text_field_tag "Y" ,"",:size=>4,:placeholder=>"Y"%>
+
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :purchased_from,:placeholder=>"Purchased From" %>
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :purchased_price,:placeholder=>"Purchased Price",:id=>"product_price" %>
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :replacement_price,:placeholder=>"Replacement Price" %>
+      </div>
+       <br>
+       <div>
+        <%= f.label :Specification%>
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :weight,:placeholder=>"Weight" %>
+      </div>
+       <br>
+      <div>
+         <%#= f.text_field :linear_unit,:placeholder=>"Linear Unit" %>
+         <%= f.select(:linear_unit, [["inches", "inches"], ["millimeter", "millimeter"], ["centimeter", "centimeter"], ["meter", "meter"]], option={ :include_blank => "Linear Unit"},html_option={:style=>"color: #686868;width: 210px;"}) %>
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :length,:placeholder=>"Length" %>
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :width,:placeholder=>"Width" %>
+      </div>
+       <br>
+      <div>
+         <%= f.text_field :height,:placeholder=>"Height" %>
+      </div>
+       <br>
+      <div>
+        <%#= f.label :Notes,""%>
+        <label for="product_Notes">Notes:</label>
+        </div>
+      <div>
+         <%= f.text_area :notes,:rows=>5,:column=>35%>
+      </div>
+       <br>
+      <div>
+        <%= f.label :Expendable,:style=>"color: #686868;margin-right:25px"%>
+         <%= f.check_box :expendable, {}, "true", "false"  %>
+         <%= f.text_field :expendable_price,:size=>15%>
+      </div>
+
+
+
+
+
+    <br>
+    <div class="actions">
+      <%= f.submit("Submit", option={:id=>"submit_product"}) %>
+    </div>
+ <% end %>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#product_expendable").live("click",function(e){
+//            alert("hi");
+             check_box = $("#product_expendable").attr('value');
+             expendable_price = $("#product_expendable_price").attr ('value');
+//             alert(expendable_price);
+             if (check_box == "true"){
+              $("#product_expendable").attr ('value',false);
+              daily_rate = $("#product_daily_rate").attr("value", expendable_price);
+              weekly_rate = $("#product_weekly_rate").attr ('value',expendable_price);
+              weekend_rate = $("#product_weekend_rate").attr ('value',expendable_price) ;
+              late_fee = $("#product_late_fee").attr ('value',expendable_price);
+//              alert(daily_rate);
+             }
+             else if(check_box == "false"){
+//                 alert (check_box);
+                 $("#product_expendable").attr ('value',true);
+                 $("#product_daily_rate").attr ('value',"");
+                 $("#product_weekly_rate").attr ('value',"");
+                 $("#product_weekend_rate").attr ('value',"");
+                 $("#product_late_fee").attr ('value',"") ;
+             }
+
+        });
+    });
+</script>

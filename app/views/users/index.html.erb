@@ -1,0 +1,33 @@
+<h2><%= @head_title = "Admin Page : User List" %></h2>
+
+<table align="center" border="1">
+  <thead>
+  <tr>
+    <th>User Name</th>
+    <th>First Name</th>
+    <th>Email</th>
+    <th>Role Name</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+      <% if user.role_id!=1 %>
+
+          <tr class="">
+            <td><%= user.username %></td>
+            <td><%= h user.firstname %></td>
+            <td><%= h user.email %></td>
+            <td> <% if user.role.nil? %>
+                  <%= 'Guest' %>
+                  <% else %>
+              <%= h user.role.name %><% end %></td>
+            <td><%= link_to 'Edit', :controller => 'home',:action => 'edit',:id =>user.id %></td>
+            <td><%#= link_to 'Destroy', devise_registrations_path(user),:method => :delete, :confirm => 'Are you sure?'  %>
+              <%#= link_to_destroy 'Destroy', base_currency_path(currency), confirm_destroy_base_currency_path(currency) %>
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>

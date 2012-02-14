@@ -1,0 +1,27 @@
+<%= form_for( @category, :url => {:controller=>"admins", :action => "create" } ) do |f| %>
+  <% if @category.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@category.errors.count, "error") %> prohibited
+        this category from being saved:</h2>
+    <ul>
+    <%@category.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div >
+    <%= f.label :category_name %><br />
+    <%= f.text_field :category_name %>
+  </div>
+      <div >
+    <%= f.label :select_category %><br />
+    <%#= f.select("create", "admin",  {:include_blank => true} )%>
+    <%= f.select(:parent_id, Category.find(:all).collect{|c| [c.category_name, c.id]},:include_blank => "Select category") %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

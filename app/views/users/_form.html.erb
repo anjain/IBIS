@@ -1,0 +1,14 @@
+
+<p><%= f.label :user_name %><br/>
+  <%= f.text_field :username %></p>
+
+<p><%= f.label :email %><br/>
+  <%= f.text_field :email %></p>
+
+<p><%= f.label :role_id %>
+  <%= f.number_field :role_id %></p>
+
+<%# if can? :manage, @user %>
+<%# end %>
+
+<p><%= f.submit "Submit" %></p>
